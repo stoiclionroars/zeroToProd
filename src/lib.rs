@@ -5,7 +5,7 @@ async fn health_check() -> HttpResponse {
     HttpResponse::Ok().finish()
 }
 
-pub fn run() -> std::io::Result<Server> {
+pub fn run() -> Result<Server, std::io::Error> {
     let server = HttpServer::new(|| {
         App::new()
             .route("/health_check", web::get().to(health_check))
